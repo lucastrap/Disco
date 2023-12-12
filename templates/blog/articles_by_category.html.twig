@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}The blog{% endblock %}
+
+{% block body %}
+
+{{articles | length}} articles retrouvés
+<div class="articles">
+
+     {% for article in articles %}
+<!--a href="{#path('app_single_article_id', {'id': article.id} ) #}" class="article-item"-->
+        <a href="{{path('app_single_article', {'slug':article.slug})}}" class="article-item">
+
+            <div class="article-image">
+                 <img src={{article.imageUrl}} width="300" heigth="300" alt="Image de l'article : {{article.title}}">
+            </div>
+            <div class="article-details flex">
+                <div class = "article-author-details">
+                    <div class ="article-author-picture">
+                        <img src={{article.author.profile.picture}} width="50" height="50" alt="image de profile de {{article.author.name}}">
+                    </div>
+                </div>
+                <div class="article-content-details">
+                    <h2 class="article-title"> {{article.title}}</h2>
+                        <div class="article-fromNow">{{article.fromNow}}</div>
+                        <div class="articles-infos">
+                        
+                        </div>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+   
+{% endblock %}
